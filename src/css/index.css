@@ -1,0 +1,43 @@
+body {
+  padding: 20px 0 0 0;
+}
+
+.transcript-editor {
+  cursor: text;
+}
+
+.transcript-editor-block {
+  display: flex;
+  margin-bottom: 10px;
+  line-height: 1.7;
+}
+
+.transcript-editor-block__speaker {
+  width: 100px;
+  color: #666;
+}
+
+.transcript-editor-block__text {
+  flex: 1;
+}
+
+.dropzone {
+  outline-width: 2px;
+  outline-color: rgb(102, 102, 102);
+  outline-style: dashed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropzone__active {
+  outline-style: solid;
+  outline-color: #6c6;
+  background-color: #eee;
+}
+
+.dropzone__reject {
+  outline-style: solid;
+  outline-color: #c66;
+  background-color: #eee;
+}
