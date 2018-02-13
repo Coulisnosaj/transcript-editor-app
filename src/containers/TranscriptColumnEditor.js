@@ -3,12 +3,32 @@ import { connect } from 'react-redux';
 import TranscriptEditor from 'transcript-editor';
 import { Transcript } from 'transcript-model';
 import PropTypes from 'prop-types';
+import { toggleVideo, seekVideoRelative } from '../actions';
 
 class TranscriptColumnEditor extends React.Component {
   constructor(props) {
     super(props);
 
-    this.onTranscriptUpdate = this.onTranscriptUpdate.bind(this);
+    this.handleKeyBoardEvent = this.handleKeyBoardEvent.bind(this);
+  }
+
+  handleKeyBoardEvent(event) {
+    if (event.ctrlKey) {
+      switch (event.key) {
+        case ' ':
+          this.props.toggleVideo();
+          break;
+        case 'f':
+          this.props.seekVideoRelative(5);
+          break;
+        case 'b':
+          this.props.seekVideoRelative(-5);
+          break;
+        default:
+          return;
+      }
+      event.preventDefault();
+    }
   }
 
   render() {
@@ -18,6 +38,7 @@ class TranscriptColumnEditor extends React.Component {
         onTranscriptUpdate={(transcript) => {
           console.log(transcript);
         }}
+        onKeyboardEvent={this.handleKeyBoardEvent}
         showSpeakers
       />
     );
@@ -26,10 +47,17 @@ class TranscriptColumnEditor extends React.Component {
 
 TranscriptColumnEditor.propTypes = {
   transcript: PropTypes.instanceOf(Transcript).isRequired,
+  toggleVideo: PropTypes.func.isRequired,
+  seekVideoRelative: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   transcript: state.transcript,
 });
 
-export default connect(mapStateToProps)(TranscriptColumnEditor);
+const mapDispatchToProps = dispatch => ({
+  toggleVideo: () => dispatch(toggleVideo()),
+  seekVideoRelative: time => dispatch(seekVideoRelative(time)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TranscriptColumnEditor);

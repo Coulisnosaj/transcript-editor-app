@@ -5,14 +5,14 @@ import VideoColumnPlayer from './VideoColumnPlayer';
 import VideoColumnUpload from './VideoColumnUpload';
 
 const VideoColumn = ({ video }) => {
-  if (video) {
+  if (video.src) {
     return <VideoColumnPlayer />;
   }
   return <VideoColumnUpload />;
 };
 
 VideoColumn.propTypes = {
-  video: PropTypes.string,
+  video: PropTypes.shape(),
 };
 
 VideoColumn.defaultProps = {
