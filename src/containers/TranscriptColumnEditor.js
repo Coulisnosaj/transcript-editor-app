@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import TranscriptEditor from 'transcript-editor';
+import TranscriptEditor, { withTime } from 'transcript-editor';
 import PropTypes from 'prop-types';
+
+import 'transcript-editor/lib/css/TranscriptEditor.css';
+
 import { toggleVideo, seekVideoRelative, updateEditor } from '../actions';
 
 class TranscriptColumnEditor extends React.Component {
@@ -38,7 +41,7 @@ class TranscriptColumnEditor extends React.Component {
   render() {
     return (
       <TranscriptEditor
-        editorState={this.props.editorState}
+        editorState={withTime(this.props.editorState, this.props.currentTime)}
         speakers={this.props.speakers}
         onChange={this.handleEditorChange}
         onKeyboardEvent={this.handleKeyBoardEvent}
@@ -54,11 +57,13 @@ TranscriptColumnEditor.propTypes = {
   toggleVideo: PropTypes.func.isRequired,
   seekVideoRelative: PropTypes.func.isRequired,
   updateEditor: PropTypes.func.isRequired,
+  currentTime: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({
   editorState: state.editor.editorState,
   speakers: state.editor.speakers,
+  currentTime: state.video.time,
 });
 
 const mapDispatchToProps = dispatch => ({

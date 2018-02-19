@@ -1,24 +1,5 @@
 body {
-  padding: 20px 0 0 0;
-}
-
-.transcript-editor {
-  cursor: text;
-}
-
-.transcript-editor-block {
-  display: flex;
-  margin-bottom: 10px;
-  line-height: 1.7;
-}
-
-.transcript-editor-block__speaker {
-  width: 100px;
-  color: #666;
-}
-
-.transcript-editor-block__text {
-  flex: 1;
+  padding: 20px 0;
 }
 
 .dropzone {
