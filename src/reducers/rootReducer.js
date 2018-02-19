@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import {
   LOAD_VIDEO,
-  LOAD_TRANSCRIPT,
+  UPDATE_EDITOR,
   PLAY_VIDEO,
   PAUSE_VIDEO,
   TOGGLE_VIDEO,
@@ -33,10 +33,10 @@ const video = (state = {
   }
 };
 
-const transcript = (state = null, action) => {
+const editor = (state = { editorState: null, speakers: null }, action) => {
   switch (action.type) {
-    case LOAD_TRANSCRIPT:
-      return action.transcript;
+    case UPDATE_EDITOR:
+      return { editorState: action.editorState, speakers: action.speakers, isLoaded: true };
     default:
       return state;
   }
@@ -44,7 +44,7 @@ const transcript = (state = null, action) => {
 
 const rootReducer = combineReducers({
   video,
-  transcript,
+  editor,
 });
 
 export default rootReducer;

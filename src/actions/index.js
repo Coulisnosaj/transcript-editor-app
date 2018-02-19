@@ -1,14 +1,22 @@
+import { convertFromTranscript } from 'transcript-editor';
+
 export const LOAD_VIDEO = 'LOAD_VIDEO';
 export const loadVideo = video => ({
   type: LOAD_VIDEO,
   video,
 });
 
-export const LOAD_TRANSCRIPT = 'LOAD_TRANSCRIPT';
-export const loadTranscript = transcript => ({
-  type: LOAD_TRANSCRIPT,
-  transcript,
+export const UPDATE_EDITOR = 'UPDATE_EDITOR';
+export const updateEditor = (editorState, speakers) => ({
+  type: UPDATE_EDITOR,
+  editorState,
+  speakers,
 });
+
+export const loadTranscript = (transcript) => {
+  const { editorState, speakers } = convertFromTranscript(transcript);
+  return updateEditor(editorState, speakers);
+};
 
 export const PLAY_VIDEO = 'PLAY_VIDEO';
 export const playVideo = () => ({

@@ -1,28 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Transcript } from 'transcript-model';
 import PropTypes from 'prop-types';
 
 import TranscriptColumnUpload from './TranscriptColumnUpload';
 import TranscriptColumnEditor from './TranscriptColumnEditor';
 
-const TranscriptColumn = ({ transcript }) => {
-  if (transcript) {
+const TranscriptColumn = ({ isTranscriptLoaded }) => {
+  if (isTranscriptLoaded) {
     return <TranscriptColumnEditor />;
   }
   return <TranscriptColumnUpload />;
 };
 
 TranscriptColumn.propTypes = {
-  transcript: PropTypes.instanceOf(Transcript),
+  isTranscriptLoaded: PropTypes.bool,
 };
 
 TranscriptColumn.defaultProps = {
-  transcript: null,
+  isTranscriptLoaded: null,
 };
 
 const mapStateToProps = state => ({
-  transcript: state.transcript,
+  isTranscriptLoaded: state.editor.isLoaded,
 });
 
 export default connect(mapStateToProps)(TranscriptColumn);

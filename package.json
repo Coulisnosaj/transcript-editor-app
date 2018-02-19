@@ -11,7 +11,7 @@
     "react-redux": "^5.0.6",
     "react-scripts": "1.1.1",
     "redux": "^3.7.2",
-    "transcript-editor": "^0.3.2",
+    "transcript-editor": "^0.4.0",
     "transcript-model": "^0.4.4"
   },
   "scripts": {
