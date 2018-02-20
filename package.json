@@ -12,7 +12,7 @@
     "react-scripts": "1.1.1",
     "redux": "^3.7.2",
     "transcript-editor": "^0.5.0",
-    "transcript-model": "^0.4.4"
+    "transcript-model": "^0.5.1"
   },
   "scripts": {
     "start": "react-scripts start",

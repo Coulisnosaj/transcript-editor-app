@@ -71,6 +71,14 @@ ajv@^5.0.0, ajv@^5.0.1-beta, ajv@^5.1.0, ajv@^5.1.5, ajv@^5.2.0, ajv@^5.2.3, ajv
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.3.0"
 
+ajv@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.1.1.tgz#978d597fbc2b7d0e5a5c3ddeb149a682f2abfa0e"
+  dependencies:
+    fast-deep-equal "^1.0.0"
+    fast-json-stable-stringify "^2.0.0"
+    json-schema-traverse "^0.3.0"
+
 align-text@^0.1.1, align-text@^0.1.3:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/align-text/-/align-text-0.1.4.tgz#0cd90a561093f35d0a99256c22b7069433fad117"
@@ -6252,6 +6260,13 @@ transcript-model@^0.4.4:
   dependencies:
     ajv "^5.0.1-beta"
     immutable "^3.8.1"
+
+transcript-model@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/transcript-model/-/transcript-model-0.5.1.tgz#4787f75d0b037488aaeed596d84a123c5a31088c"
+  dependencies:
+    ajv "^6.1.1"
+    immutable "^3.8.2"
 
 trim-newlines@^1.0.0:
   version "1.0.0"
