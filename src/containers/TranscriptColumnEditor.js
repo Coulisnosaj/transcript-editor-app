@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import TranscriptEditor, { withTime } from 'transcript-editor';
+import TranscriptEditor, { withTime, convertToTranscript } from 'transcript-editor';
 import PropTypes from 'prop-types';
 
 import 'transcript-editor/lib/css/TranscriptEditor.css';
@@ -13,6 +13,7 @@ class TranscriptColumnEditor extends React.Component {
 
     this.handleEditorChange = this.handleEditorChange.bind(this);
     this.handleKeyBoardEvent = this.handleKeyBoardEvent.bind(this);
+    this.saveTranscript = this.saveTranscript.bind(this);
   }
 
   handleEditorChange({ editorState, speakers }) {
@@ -38,15 +39,33 @@ class TranscriptColumnEditor extends React.Component {
     }
   }
 
+  saveTranscript() {
+    const transcript = convertToTranscript(
+      this.props.editorState.getCurrentContent(),
+      this.props.speakers,
+    );
+
+    const blob = new Blob([JSON.stringify(transcript.toJSON(), null, 2)], {
+      type: 'application/json;charset=utf-8',
+    });
+
+    window.open(URL.createObjectURL(blob));
+  }
+
   render() {
     return (
-      <TranscriptEditor
-        editorState={withTime(this.props.editorState, this.props.currentTime)}
-        speakers={this.props.speakers}
-        onChange={this.handleEditorChange}
-        onKeyboardEvent={this.handleKeyBoardEvent}
-        showSpeakers
-      />
+      <Fragment>
+        <TranscriptEditor
+          editorState={withTime(this.props.editorState, this.props.currentTime)}
+          speakers={this.props.speakers}
+          onChange={this.handleEditorChange}
+          onKeyboardEvent={this.handleKeyBoardEvent}
+          showSpeakers
+        />
+        <button className="btn btn-primary mt-2" onClick={this.saveTranscript}>
+          Save transcript
+        </button>
+      </Fragment>
     );
   }
 }
